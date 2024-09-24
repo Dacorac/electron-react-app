@@ -2,16 +2,17 @@ import React, { useReducer, createContext, useEffect } from 'react';
 import StateReducer from '../reducers/reducers';
 
 const initialState = {
-  selectedBackground : null
+  selectedBackground : null,
+  originalPhoto : null
 };
 
 const Store = ({ children }) => {
 
   const [state, dispatch] = useReducer(StateReducer, initialState);
   
-/*   useEffect(() => {
+  useEffect(() => {
     console.log(state)
-  }, [state]) */
+  }, [state])
 
   return ( 
     <Context.Provider value={[state, dispatch]}>

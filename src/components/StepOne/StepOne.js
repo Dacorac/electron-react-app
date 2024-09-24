@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import SelectNewBackground from "../../actions/Actions";
+import { SelectNewBackground } from "../../actions/Actions";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Store/Store";
 

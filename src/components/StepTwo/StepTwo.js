@@ -4,6 +4,8 @@ import { Context } from "../../Store/Store";
 import Webcam from "react-webcam";
 import useCountdown from "../../hooks/useCountdown";
 
+import { StoreOriginalPhoto } from "../../actions/Actions";
+
 import "./StepTwo.css";
 
 const StepTwo = () => {
@@ -44,6 +46,10 @@ const StepTwo = () => {
     reset();
   }
 
+  const nextStep = () => {
+    dispatch(StoreOriginalPhoto(imgSrc));
+  }
+ 
   return (
     <div className="container">
       {imgSrc ? (
