@@ -9,6 +9,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  min-width: 100%;
   background-color: #f0f0f0;
 }
 
@@ -23,4 +24,13 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.app_container {
+  width: 100%;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
 }
