@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { SelectNewBackground } from "../../actions/Actions";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Store/Store";
+import withHeaderFooter from "../../hoc/withHeaderFooter";
 
 import "./StepOne.css";
 
@@ -42,4 +43,4 @@ const StepOne = () => {
   );
 }
  
-export default StepOne;
+export default withHeaderFooter(StepOne);
