@@ -1,9 +1,17 @@
+:root {
+ --rescue-blue: #00395F;
+ --silver-lining: #AFB2B3;
+ --sunshine-yellow: #FFB500;
+ --sunshine-yellow-outline: #fac343;
+ --error_color: #F6A29A;
+  --error_color_outline: #FDF0FB;
+ --primary-lite: #c0bec5;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
   margin: auto;
   max-width: 38rem;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
