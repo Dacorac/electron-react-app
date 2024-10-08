@@ -1,7 +1,7 @@
 .landing-container {
   height: 100vh; 
   width: 100%;
-  background-color: #002b55; 
+  background-color: var(--rescue-blue); 
   display: grid;
   overflow: hidden;
 }

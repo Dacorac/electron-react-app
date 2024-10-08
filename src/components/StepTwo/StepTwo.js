@@ -1,5 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect, useContext } from "react";
 import { Context } from "../../Store/Store";
+import { useNavigate } from "react-router-dom";
 
 import Webcam from "react-webcam";
 import useCountdown from "../../hooks/useCountdown";
@@ -7,19 +8,22 @@ import useCountdown from "../../hooks/useCountdown";
 import { StoreOriginalPhoto } from "../../actions/Actions";
 
 import "./StepTwo.css";
+import withHeaderFooter from "../../hoc/withHeaderFooter";
 
 const StepTwo = () => {
   const webcamRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
   const [isCounting, setIsCounting] = useState(false);
   const [state, dispatch] = useContext(Context);
+
+  const navigate = useNavigate();
   const { selectedBackground } = state;
 
   const handleComplete = () => {
     capture();
   }
 
-  const { time, start, reset } = useCountdown(30, handleComplete);
+  const { time, start, reset } = useCountdown(5, handleComplete);
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -48,6 +52,7 @@ const StepTwo = () => {
 
   const nextStep = () => {
     dispatch(StoreOriginalPhoto(imgSrc));
+    navigate('/step-three');
   }
  
   return (
@@ -84,4 +89,4 @@ const StepTwo = () => {
   );
 }
 
-export default StepTwo;
+export default withHeaderFooter(StepTwo);
