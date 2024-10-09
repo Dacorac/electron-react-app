@@ -1,11 +1,12 @@
 :root {
- --rescue-blue: #00395F;
- --silver-lining: #AFB2B3;
- --sunshine-yellow: #FFB500;
- --sunshine-yellow-outline: #fac343;
- --error_color: #F6A29A;
+  --rescue-blue: #00395F;
+  --silver-lining: #AFB2B3;
+  --sunshine-yellow: #FFB500;
+  --sunshine-yellow-outline: #fac343;
+  --cloud-white: #ffffff;
+  --error_color: #F6A29A;
   --error_color_outline: #FDF0FB;
- --primary-lite: #c0bec5;
+  --primary-lite: #c0bec5;
 }
 
 body {
