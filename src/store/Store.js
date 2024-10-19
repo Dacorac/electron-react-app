@@ -3,7 +3,8 @@ import StateReducer from '../reducers/reducers';
 
 const initialState = {
   selectedBackground : null,
-  originalPhoto : null
+  originalPhoto : null,
+  visitorDetails : null
 };
 
 const Store = ({ children }) => {
@@ -11,7 +12,7 @@ const Store = ({ children }) => {
   const [state, dispatch] = useReducer(StateReducer, initialState);
   
   useEffect(() => {
-    console.log(state)
+    //console.log(state)
   }, [state])
 
   return ( 

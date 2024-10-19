@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import withHeaderFooter from "../../hoc/withHeaderFooter";
 import CustomInput from '../customized/CustomInput/CustomInput';
 import CustomCheckbox from '../customized/CustomCheckbox/CustomCheckbox';
+import { Context } from "../../Store/Store";
 
+import { StoreVisitorDetails } from '../../actions/Actions';
 import { useForm } from 'react-hook-form';
+
+import axios from 'axios';
 
 import "./StepThree.css";
 
@@ -13,21 +17,44 @@ const StepThree = () => {
     reset, 
     watch,
     setValue,
-    formState: { errors, isDirty, isValid } 
+    formState: { errors, isValid } 
   } = useForm({ mode: 'all' });
 
+  const [state, dispatch] = useContext(Context);
+  const { visitorDetails } = state;
   const [marketingChecked, setMarketingChecked] = useState(true);
   const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
 
   useEffect(() => {
-    register("optOutMarketing", { required: true });
+    register("marketingUpdate");
   }, [register]);
 
   useEffect(() => {
-    setValue("optOutMarketing", marketingChecked);
+    setValue("marketingUpdate", marketingChecked);
   }, [marketingChecked]);
 
-  const optOutMarketingChange = () => {
+  useEffect(() => {
+    sendVisitorDetails(visitorDetails);
+  }, [visitorDetails])
+
+  const sendVisitorDetails = async (data) => {
+    let body = {
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email: data.email,
+      mobile_phone: data.mobile_phone,
+      opt_out_marketing: data.marketingUpdate ? 0 : 1 
+    }
+    console.log(body)
+    try {
+      let response = await axios.post(`http://localhost:8000/create_visitor_contact`, body);
+      console.log(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+             
+  const marketingUpdateChange = () => {
     setMarketingChecked((prev) => !prev);
   };
 
@@ -35,18 +62,24 @@ const StepThree = () => {
     setPrivacyPolicyChecked((prev) => !prev);
   }
 
-  const marketingCheckboxValue = watch("optOutMarketing");
+  const marketingCheckboxValue = watch("marketingUpdate");
+
+  const resetForm = () => {
+    reset();
+    setMarketingChecked(true);
+    setPrivacyPolicyChecked(false);
+  }
 
   const onSubmit = (formData) => {
-    console.log(formData)
-    reset();
+    dispatch(StoreVisitorDetails(formData));
+    resetForm();
   }
 
   const isDisabled = () => {
     let hasErrors = Object.keys(errors).length !== 0;
     let isChecked = privacyPolicyChecked ? true : false;
 
-    return hasErrors || !isChecked || !isDirty || !isValid;
+    return hasErrors || !isChecked || !isValid;
   }
 
   return ( 
@@ -85,7 +118,7 @@ const StepThree = () => {
             <CustomInput 
               type='text' 
               placeholder='Phone number'
-              name="phone"
+              name="mobile_phone"
               errors={errors}
               register={register}
               validationSchema={{
@@ -130,7 +163,7 @@ const StepThree = () => {
               label="Stay up to date with LifeFlight news and appeals"
               checked={marketingChecked}
               value={marketingCheckboxValue}
-              handleChange={optOutMarketingChange}
+              handleChange={marketingUpdateChange}
             />
           </div>
 
