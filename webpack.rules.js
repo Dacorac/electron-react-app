@@ -25,7 +25,20 @@ module.exports = [
         presets: ['@babel/preset-react']
       }
     }
-  }
+  },
+  {
+    test: /\.(jpg|png|svg|ico|icns)$/,
+    use: [
+      {
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+          publicPath: '..',
+          context: "src"
+        },
+      }
+    ]
+  },
   // Put your webpack loader rules in this array.  This is where you would put
   // your ts-loader configuration for instance:
   /**
