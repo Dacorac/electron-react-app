@@ -1,14 +1,15 @@
 import React, { useRef, useState, useCallback, useEffect, useContext } from "react";
 import { Context } from "../../Store/Store";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import Webcam from "react-webcam";
 import useCountdown from "../../hooks/useCountdown";
+import withHeaderFooter from "../../hoc/withHeaderFooter";
 
 import { StoreOriginalPhoto } from "../../actions/Actions";
 
 import "./StepTwo.css";
-import withHeaderFooter from "../../hoc/withHeaderFooter";
 
 const StepTwo = () => {
   const webcamRef = useRef(null);
@@ -17,7 +18,7 @@ const StepTwo = () => {
   const [state, dispatch] = useContext(Context);
 
   const navigate = useNavigate();
-  const { selectedBackground } = state;
+  const { selectedBackground, originalPhoto } = state;
 
   const handleComplete = () => {
     capture();
@@ -25,10 +26,14 @@ const StepTwo = () => {
 
   const { time, start, reset } = useCountdown(5, handleComplete);
 
+  useEffect(() => {
+    if (originalPhoto !== null) transformPhoto(imgSrc, selectedBackground);
+  }, [originalPhoto]);
+
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-
+    dispatch(StoreOriginalPhoto(imageSrc));
     // Use the Electron IPC to save the image
     /*     if (imageSrc) {
           window.electron.saveImage(imageSrc).then((filePath) => {
@@ -38,6 +43,21 @@ const StepTwo = () => {
           });
         } */
   }, [webcamRef]);
+
+  const transformPhoto = async (image, backgroundId) => {
+    console.log(image)
+    let body = JSON.stringify({
+      image: image,
+      background_id: backgroundId
+    });
+
+    try {
+      let response = await axios.post(`http://localhost:8000/transform_image`, body);
+      console.log(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const startCountdown = () => {
     setIsCounting(true);
@@ -51,7 +71,6 @@ const StepTwo = () => {
   }
 
   const nextStep = () => {
-    dispatch(StoreOriginalPhoto(imgSrc));
     navigate('/step-three');
   }
  
