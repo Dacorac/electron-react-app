@@ -9,9 +9,7 @@
 .landing-background-pattern {
   position: absolute;
   height: 100%;
-  width: 100%; 
-  background-image: url('../../assets/patterns_yellow.jpg');
-  background-repeat: no-repeat;
+  width: 100%;
   background-size: cover;
 }
 

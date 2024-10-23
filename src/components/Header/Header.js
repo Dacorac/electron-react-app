@@ -5,7 +5,7 @@ import "./Header.css";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const headerImgUrl = './assets/header_logo.png';
+  const headerImgUrl = '../assets/header_logo.png';
   const navigate = useNavigate();
 
   const goHome = () => {

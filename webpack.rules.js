@@ -30,12 +30,7 @@ module.exports = [
     test: /\.(jpg|png|svg|ico|icns)$/,
     use: [
       {
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-          publicPath: '..',
-          context: "src"
-        },
+        loader: 'file-loader'
       }
     ]
   },

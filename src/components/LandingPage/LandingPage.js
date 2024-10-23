@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import './LandingPage.css';
 
 const LandingPage = () => {
-  const logo_url = './assets/landing_logo.png';
+  const logo_url = '../assets/landing_logo.png';
+  const background_pattern = '../assets/patterns_yellow.jpg';
   const navigate = useNavigate();
 
   const onStartClick = () => {
@@ -24,7 +25,7 @@ const LandingPage = () => {
       <div className="landing-privacy-policy">
         Privacy Policy
       </div>
-      <div className="landing-background-pattern">
+      <div className="landing-background-pattern" style={{ backgroundImage: `url(${background_pattern})` }}>
       </div>
     </div>
   );

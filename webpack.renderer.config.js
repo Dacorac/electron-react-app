@@ -15,10 +15,7 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        {
-          from: path.resolve(__dirname, 'src/assets'), // Source assets folder
-          to: path.resolve(__dirname, '.webpack/renderer/main_window/assets'), // Output to the main_window folder
-        }
+        { from: path.join("src", "assets"), to: "assets" }
       ],
     }),
   ],

@@ -13,9 +13,9 @@ const StepOne = () => {
   const navigate = useNavigate();
   
   const backgroundList = [
-    { id: 1, url: "./assets/background_01.png" },
-    { id: 2, url: "./assets/background_02.png" },
-    { id: 3, url: "./assets/background_02.png" },
+    { id: 1, url: "../assets/background_01.png" },
+    { id: 2, url: "../assets/background_02.png" },
+    { id: 3, url: "../assets/background_02.png" },
   ];
 
   useEffect(() => {
