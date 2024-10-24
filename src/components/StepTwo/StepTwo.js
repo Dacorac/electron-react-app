@@ -51,8 +51,12 @@ const StepTwo = () => {
       background_id: backgroundId
     });
 
+    let options = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+
     try {
-      let response = await axios.post(`http://localhost:8000/transform_image`, body);
+      let response = await axios.post(`http://localhost:8000/transform_image`, body, options);
       console.log(response.data)
     } catch (error) {
       console.error(error);
