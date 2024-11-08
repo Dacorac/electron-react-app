@@ -12,7 +12,7 @@ const Store = ({ children }) => {
   const [state, dispatch] = useReducer(StateReducer, initialState);
   
   useEffect(() => {
-    //console.log(state)
+    console.log(state)
   }, [state])
 
   return ( 

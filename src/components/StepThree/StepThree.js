@@ -2,26 +2,14 @@ import React, { useEffect, useState, useContext } from 'react';
 import withHeaderFooter from "../../hoc/withHeaderFooter";
 import CustomInput from '../customized/CustomInput/CustomInput';
 import CustomCheckbox from '../customized/CustomCheckbox/CustomCheckbox';
-import { Context } from "../../Store/Store";
 
 import { StoreVisitorDetails } from '../../actions/Actions';
-import { useForm } from 'react-hook-form';
-
-import axios from 'axios';
+import useVisitorForm from '../../hooks/useVisitorForm';
 
 import "./StepThree.css";
 
 const StepThree = () => {
-  const { register, 
-    handleSubmit, 
-    reset, 
-    watch,
-    setValue,
-    formState: { errors, isValid } 
-  } = useForm({ mode: 'all' });
-
-  const [state, dispatch] = useContext(Context);
-  const { visitorDetails } = state;
+  const { register, handleSubmit, setValue, watch, errors, isValid, resetForm } = useVisitorForm();
   const [marketingChecked, setMarketingChecked] = useState(true);
   const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
 
@@ -33,27 +21,7 @@ const StepThree = () => {
     setValue("marketingUpdate", marketingChecked);
   }, [marketingChecked]);
 
-  useEffect(() => {
-    sendVisitorDetails(visitorDetails);
-  }, [visitorDetails])
-
-  const sendVisitorDetails = async (data) => {
-    let body = {
-      first_name: data.first_name,
-      last_name: data.last_name,
-      email: data.email,
-      mobile_phone: data.mobile_phone,
-      opt_out_marketing: data.marketingUpdate ? 0 : 1 
-    }
-    console.log(body)
-    try {
-      let response = await axios.post(`http://localhost:8000/create_visitor_contact`, body);
-      console.log(response.data)
-    } catch (error) {
-      console.error(error);
-    }
-  }
-             
+  
   const marketingUpdateChange = () => {
     setMarketingChecked((prev) => !prev);
   };
@@ -64,15 +32,15 @@ const StepThree = () => {
 
   const marketingCheckboxValue = watch("marketingUpdate");
 
-  const resetForm = () => {
-    reset();
+  const reset = () => {
+    resetForm();
     setMarketingChecked(true);
     setPrivacyPolicyChecked(false);
   }
 
   const onSubmit = (formData) => {
     dispatch(StoreVisitorDetails(formData));
-    resetForm();
+    reset();
   }
 
   const isDisabled = () => {
