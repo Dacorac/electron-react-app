@@ -1,0 +1,13 @@
+.footer-container {
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-image img {
+  max-width: 60%;
+}
