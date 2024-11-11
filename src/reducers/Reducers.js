@@ -8,6 +8,8 @@ const StateReducer = (state, action) => {
       return { ...state, originalPhoto: action.payload };
     case 'STORE_VISITOR_DETAILS':
       return { ...state, visitorDetails: action.payload };
+    case 'RESET_STORE':
+      return { ...action.payload };
     default:
       return state;
   }
