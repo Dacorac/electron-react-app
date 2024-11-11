@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
-import { Context } from "../../Store/Store";
+import { Context } from "../../store/Store";
 import withHeaderFooter from "../../hoc/withHeaderFooter";
 import useWebcamCapture from "../../hooks/useWebcamCapture";
 import useTransformPhoto from "../../hooks/useTransformPhoto";

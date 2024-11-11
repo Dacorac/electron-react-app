@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useContext } from 'react';
-import { Context } from '../Store/Store';
+import { Context } from '../store/Store';
 
 const useSendVisitorDetails = () => {
   const [state] = useContext(Context);

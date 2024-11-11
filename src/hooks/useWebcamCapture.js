@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useContext } from "react";
 import useCountdown from "./useCountdown";
 import { StoreOriginalPhoto } from "../actions/Actions";
-import { Context } from "../Store/Store";
+import { Context } from "../store/Store";
 
 const useWebcamCapture = () => {
   const webcamRef = useRef(null);

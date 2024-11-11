@@ -5,7 +5,7 @@ import StepTwo from "./components/StepTwo/StepTwo";
 import StepThree from "./components/StepThree/StepThree";
 import LandingPage from "./components/LandingPage/LandingPage";
 
-import Store from "./Store/Store";
+import Store from "./store/Store";
 
 function App() {
   return (

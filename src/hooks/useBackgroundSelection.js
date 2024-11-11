@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { SelectNewBackground } from "../actions/Actions";
-import { Context } from "../Store/Store";
+import { Context } from "../store/Store";
 
 const useBackgroundSelection = () => {
   const [, dispatch] = useContext(Context);

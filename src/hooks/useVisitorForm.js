@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
-import { Context } from '../Store/Store';
+import { Context } from '../store/Store';
 import { StoreVisitorDetails } from '../actions/Actions';
 import useSendVisitorDetails from './useSendVisitorDetails';
 
