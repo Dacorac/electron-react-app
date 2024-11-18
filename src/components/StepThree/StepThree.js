@@ -38,11 +38,6 @@ const StepThree = () => {
     setPrivacyPolicyChecked(false);
   }
 
-  const onSubmit = (formData) => {
-    dispatch(StoreVisitorDetails(formData));
-    reset();
-  }
-
   const isDisabled = () => {
     let hasErrors = Object.keys(errors).length !== 0;
     let isChecked = privacyPolicyChecked ? true : false;
@@ -54,7 +49,7 @@ const StepThree = () => {
     <div className='step-three-container'>
       <div className='step-three-form'>
         <h1>Get your photo emailed to you</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <div className='step-three-form-group'>
             <label className="step-three-form-label">First Name</label>
             <CustomInput 
