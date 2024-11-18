@@ -1,0 +1,10 @@
+.thank-you-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  color: var(--rescue-blue);
+  font-size: 24px;
+}

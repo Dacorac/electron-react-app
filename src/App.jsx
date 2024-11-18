@@ -4,6 +4,7 @@ import StepOne from "./components/StepOne/StepOne";
 import StepTwo from "./components/StepTwo/StepTwo";
 import StepThree from "./components/StepThree/StepThree";
 import LandingPage from "./components/LandingPage/LandingPage";
+import ThankyouPage from "./components/ThankyouPage/ThankyouPage";
 
 import Store from "./store/Store";
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/step-one" element={<StepOne />} />
             <Route path="/step-two" element={<StepTwo />} />
             <Route path="/step-three" element={<StepThree />} />
+            <Route path="/thank-you" element={<ThankyouPage />} />
             <Route path="/" element={<Navigate replace to="/landing" />} />
           </Routes>
         </HashRouter>

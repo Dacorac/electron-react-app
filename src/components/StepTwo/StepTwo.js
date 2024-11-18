@@ -35,11 +35,11 @@ const StepTwo = () => {
             screenshotFormat="image/jpeg"
             className={isCounting ? "blurry" : ""}
           />
-          {/* {isCounting && ( */}
+          {isCounting && (
             <div className="overlay">
               <h1>{time}</h1>
             </div>
-          {/* )} */}
+          )}
         </div>
       )}
 

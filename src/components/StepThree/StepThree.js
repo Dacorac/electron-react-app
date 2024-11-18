@@ -14,7 +14,7 @@ const StepThree = () => {
   const [marketingChecked, setMarketingChecked] = useState(true);
   const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     register("marketingUpdate");
   }, [register]);
@@ -147,7 +147,7 @@ const StepThree = () => {
 
           <div className='btn-container'>
             <BackButton type='button' handleClick={() => navigate('/step-two')} />
-            <NextButton type='submit' handleClick={() => navigate('/step-three')} isDisabled={isDisabled()}/>
+            <NextButton type='submit' handleClick={() => navigate('/thank-you')} isDisabled={isDisabled()}/>
           </div>
         </form>
       </div>
