@@ -29,6 +29,10 @@
   padding-left: 32px;
 }
 
+.start-button-image {
+  width: 200px;
+}
+
 .landing-privacy-policy {
   display: flex;
   align-items: flex-end;

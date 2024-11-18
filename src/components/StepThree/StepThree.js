@@ -2,9 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import withHeaderFooter from "../../hoc/withHeaderFooter";
 import CustomInput from '../customized/CustomInput/CustomInput';
 import CustomCheckbox from '../customized/CustomCheckbox/CustomCheckbox';
-
-import { StoreVisitorDetails } from '../../actions/Actions';
+import NextButton from "../customized/NextButton/NextButton";
+import BackButton from "../customized/BackButton/BackButton";
 import useVisitorForm from '../../hooks/useVisitorForm';
+import { useNavigate } from "react-router-dom";
 
 import "./StepThree.css";
 
@@ -12,7 +13,8 @@ const StepThree = () => {
   const { register, handleSubmit, setValue, watch, errors, isValid, resetForm } = useVisitorForm();
   const [marketingChecked, setMarketingChecked] = useState(true);
   const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     register("marketingUpdate");
   }, [register]);
@@ -143,8 +145,9 @@ const StepThree = () => {
             <p>Note: Your green screen photos are for personal use only and won’t be used for any other purpose. We may reach out to provide more information about LifeFlight.</p>
           </div>
 
-          <div>
-            <button type='submit' disabled={isDisabled()}>Next</button>
+          <div className='btn-container'>
+            <BackButton type='button' handleClick={() => navigate('/step-two')} />
+            <NextButton type='submit' handleClick={() => navigate('/step-three')} isDisabled={isDisabled()}/>
           </div>
         </form>
       </div>

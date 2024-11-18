@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import withHeaderFooter from "../../hoc/withHeaderFooter";
 import useBackgroundSelection from "../../hooks/useBackgroundSelection";
 import "./StepOne.css";
+import NextButton from "../customized/NextButton/NextButton";
 
 const StepOne = () => {
   const { backgroundList, selectBackground } = useBackgroundSelection();
@@ -27,8 +28,8 @@ const StepOne = () => {
           </div>
         ))}
       </div>
-      <div className="btn-container">
-        <button onClick={() => navigate("/step-two")}>Next</button>
+      <div className="step_one_next_button">
+        <NextButton type='button' handleClick={() => navigate('/step-two')} />
       </div>
     </div>
   );

@@ -5,13 +5,13 @@ import Footer from "../components/Footer/Footer";
 const withHeaderFooter = (WrappedComponent) => {
   return (props) => {
     return (
-      <div>
+      <>
         <Header />
-        <main>
+        <div className="main-view">
           <WrappedComponent {...props} />
-        </main>
+        </div>
         <Footer />
-      </div>
+      </>
     );
   };
 }

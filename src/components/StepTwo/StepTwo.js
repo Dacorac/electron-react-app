@@ -5,6 +5,8 @@ import { Context } from "../../store/Store";
 import withHeaderFooter from "../../hoc/withHeaderFooter";
 import useWebcamCapture from "../../hooks/useWebcamCapture";
 import useTransformPhoto from "../../hooks/useTransformPhoto";
+import NextButton from "../customized/NextButton/NextButton";
+import BackButton from "../customized/BackButton/BackButton";
 import "./StepTwo.css";
 
 const StepTwo = () => {
@@ -33,11 +35,11 @@ const StepTwo = () => {
             screenshotFormat="image/jpeg"
             className={isCounting ? "blurry" : ""}
           />
-          {isCounting && (
+          {/* {isCounting && ( */}
             <div className="overlay">
               <h1>{time}</h1>
             </div>
-          )}
+          {/* )} */}
         </div>
       )}
 
@@ -45,8 +47,8 @@ const StepTwo = () => {
         {!imgSrc && !isCounting && <button onClick={startCountdown}>Capture photo</button>}
         {imgSrc && (
           <>
-            <button onClick={restartCapture}>Take another</button>
-            <button onClick={() => navigate("/step-three")}>Next</button>
+            <BackButton type='button' handleClick={restartCapture} />
+            <NextButton type='button' handleClick={() => navigate('/step-three')} />
           </>
         )}
       </div>

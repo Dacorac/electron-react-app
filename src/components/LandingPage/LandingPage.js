@@ -5,6 +5,7 @@ import './LandingPage.css';
 const LandingPage = () => {
   const logo_url = '../assets/landing_logo.png';
   const background_pattern = '../assets/patterns_yellow.jpg';
+  const start_button = '../assets/start_button.png';
   const navigate = useNavigate();
 
   const onStartClick = () => {
@@ -20,7 +21,9 @@ const LandingPage = () => {
         Green Screen Photo Opportunity!
       </div>
       <div className="landing-start-button">
-        <button className="start-button" onClick={onStartClick}>Start</button>
+        <button className="start-button unbuttonize" onClick={onStartClick}>
+          <img className="start-button-image"src={start_button} />
+        </button>
       </div>
       <div className="landing-privacy-policy">
         Privacy Policy

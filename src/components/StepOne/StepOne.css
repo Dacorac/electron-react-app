@@ -1,12 +1,12 @@
 .step_one_container {
-  margin: 32px;
   color: var(--rescue-blue);
+  margin: 32px;
 }
 
 .step_one_images_grid {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -35,4 +35,9 @@
   transform: scale(1.1); 
   border: 1px solid var(--outback-orange);
   box-shadow: 0px 0px 2px 3px var(--outback-orange-outline);
+}
+
+.step_one_next_button {
+  display: flex;
+  justify-content: flex-end;
 }

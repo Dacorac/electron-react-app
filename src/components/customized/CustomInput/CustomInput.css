@@ -4,7 +4,7 @@ input {
   outline: none;
   font-size: 24px;
   flex-grow: 1;
-  padding: 1rem;
+  padding: 12px;
   font-style: normal;
 }
 
@@ -25,7 +25,7 @@ input::placeholder {
 .input_wrapp {
   display: flex;
   width: 100%;
-  padding: 1rem 0;
+  padding: 10px 0;
 }
 
 .input_container:has(input:focus) {
