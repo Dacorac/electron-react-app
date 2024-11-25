@@ -8,6 +8,7 @@ import useTransformPhoto from "../../hooks/useTransformPhoto";
 import NextButton from "../customized/NextButton/NextButton";
 import BackButton from "../customized/BackButton/BackButton";
 import "./StepTwo.css";
+import Loader from "../customized/Loader/Loader";
 
 const StepTwo = () => {
   const { webcamRef, imgSrc, isCounting, time, startCountdown, restartCapture } = useWebcamCapture();
@@ -22,6 +23,12 @@ const StepTwo = () => {
     }
   }, [originalPhoto]);
 
+  const videoConstraints = {
+    height: { min: 480 },
+    width: { min: 720 },
+    /* aspectRatio: 1.5 */
+  };
+
   return (
     <div className="container">
       {imgSrc ? (
@@ -29,8 +36,8 @@ const StepTwo = () => {
       ) : (
         <div className="video-container">
           <Webcam
-            height={600}
-            width={600}
+            style={{transform: 'rotate(90deg)'}}
+            videoConstraints={videoConstraints}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             className={isCounting ? "blurry" : ""}
@@ -43,6 +50,10 @@ const StepTwo = () => {
         </div>
       )}
 
+      {transformLoading && <Loader />}
+
+      {transformedPhoto && <img src={`data:image/png;base64,${transformedPhoto}`} alt="Captured" />}
+
       <div className="btn-container">
         {!imgSrc && !isCounting && <button onClick={startCountdown}>Capture photo</button>}
         {imgSrc && (
@@ -52,8 +63,6 @@ const StepTwo = () => {
           </>
         )}
       </div>
-
-      {transformLoading && <p>Transforming photo...</p>}
     </div>
   );
 };
