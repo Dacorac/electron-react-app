@@ -23,7 +23,7 @@ const StepThree = () => {
     setValue("marketingUpdate", marketingChecked);
   }, [marketingChecked]);
 
-  
+
   const marketingUpdateChange = () => {
     setMarketingChecked((prev) => !prev);
   };
@@ -47,54 +47,54 @@ const StepThree = () => {
     return hasErrors || !isChecked || !isValid;
   }
 
-  return ( 
+  return (
     <div className='step-three-container'>
-      <div className='step-three-form'>
-        <h1>Get your photo emailed to you</h1>
-        <form onSubmit={handleSubmit}>
+      <p className='step-three-title large-title'>Get your photo emailed to you</p>
+      <form onSubmit={handleSubmit}>
+        <div className='step-three-form'>
           <div className='step-three-form-group'>
-            <label className="step-three-form-label">First Name</label>
-            <CustomInput 
-              type='text' 
+            <label className="step-three-form-label small-text">First Name</label>
+            <CustomInput
+              type='text'
               placeholder='Your First Name'
               name="first_name"
               errors={errors}
               register={register}
               validationSchema={{
                 required: 'Enter first name.'
-              }} 
+              }}
             />
           </div>
           <div className='step-three-form-group'>
-            <label className="step-three-form-label">Last Name</label>
-            <CustomInput 
-              type='text' 
+            <label className="step-three-form-label small-text">Last Name</label>
+            <CustomInput
+              type='text'
               placeholder='Your Last Name'
               name="last_name"
               errors={errors}
               register={register}
               validationSchema={{
                 required: 'Enter last name.'
-              }} 
+              }}
             />
           </div>
           <div className='step-three-form-group'>
-            <label className="step-three-form-label">Phone</label>
-            <CustomInput 
-              type='text' 
+            <label className="step-three-form-label small-text">Phone</label>
+            <CustomInput
+              type='text'
               placeholder='Phone number'
               name="mobile_phone"
               errors={errors}
               register={register}
               validationSchema={{
                 required: 'Enter phone number.'
-              }} 
+              }}
             />
           </div>
           <div className='step-three-form-group'>
-            <label className="step-three-form-label">Email</label>
-            <CustomInput 
-              type='text' 
+            <label className="step-three-form-label small-text">Email</label>
+            <CustomInput
+              type='text'
               placeholder='Your Email'
               name="email"
               errors={errors}
@@ -109,21 +109,21 @@ const StepThree = () => {
             />
           </div>
           <div className='step-three-form-group'>
-            <label className="step-three-form-label">Postcode</label>
-            <CustomInput 
-              type='text' 
+            <label className="step-three-form-label small-text">Postcode</label>
+            <CustomInput
+              type='text'
               placeholder='Your postcode'
               name="postcode"
               errors={errors}
               register={register}
               validationSchema={{
                 required: 'Enter postcode.'
-              }} 
+              }}
             />
           </div>
 
           <div className="step-three-form-group checkbox">
-            <CustomCheckbox 
+            <CustomCheckbox
               id="marketingCheckbox"
               label="Stay up to date with LifeFlight news and appeals"
               checked={marketingChecked}
@@ -133,7 +133,7 @@ const StepThree = () => {
           </div>
 
           <div className="step-three-form-group checkbox">
-            <CustomCheckbox 
+            <CustomCheckbox
               id="privacyPolicyCheckbox"
               label="I agree with the Privacy Policy"
               checked={privacyPolicyChecked}
@@ -141,18 +141,17 @@ const StepThree = () => {
             />
           </div>
 
-          <div className="step-three-note">
+          <div className="step-three-note x-small-text">
             <p>Note: Your green screen photos are for personal use only and won’t be used for any other purpose. We may reach out to provide more information about LifeFlight.</p>
           </div>
-
-          <div className='btn-container'>
-            <BackButton type='button' handleClick={() => navigate('/step-two')} />
-            <NextButton type='submit' handleClick={() => navigate('/thank-you')} isDisabled={isDisabled()}/>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div className='btn-container'>
+          <BackButton type='button' handleClick={() => navigate('/step-two')} />
+          <NextButton type='submit' handleClick={() => navigate('/thank-you')} isDisabled={isDisabled()} />
+        </div>
+      </form>
     </div>
   );
 }
- 
+
 export default withHeaderFooter(StepThree);

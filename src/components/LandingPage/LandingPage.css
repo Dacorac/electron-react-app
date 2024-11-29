@@ -16,32 +16,34 @@
 .landing-text-container {
   display: flex;
   align-items: center;
-  color: #fff;
-  font-size: 45px;
+  color: var(--cloud-white);
+  font-size: 52px;
   z-index: 1;
   max-width: 50%;
   font-weight: bold;
-  padding-left: 28px;
+  margin-left: 42px;
 }
 
 .landing-start-button {
   z-index: 1;
-  padding-left: 32px;
+  margin-left: 42px;
 }
 
 .start-button-image {
-  width: 200px;
+  width: 300px;
 }
 
 .landing-privacy-policy {
   display: flex;
   align-items: flex-end;
-  color: #fff;
+  color: var(--cloud-white);
   font-size: 32px;
   z-index: 1;
   max-width: 50%;
   font-weight: bold;
-  padding-left: 32px;
+  margin-left: 42px;
+  margin-bottom: 42px;
+  cursor: pointer;
 }
 
 .landing-logo-container {
@@ -49,6 +51,6 @@
 }
 
 .logo-branding {
-  max-width: 50%;
+  max-width: 70%;
   height: auto;
 }

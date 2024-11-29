@@ -11,7 +11,7 @@ const StepOne = () => {
 
   return (
     <div className="step_one_container">
-      <h1>Choose your background</h1>
+      <p className="large-title">Choose your background</p>
       <div className="step_one_images_grid">
         {backgroundList.map((background) => (
           <div className="step_one_background" key={background.id}>
@@ -24,7 +24,7 @@ const StepOne = () => {
                 tabIndex={0}
               />
             </div>
-            <p className="step_one_image_caption">{background.caption}</p>
+            <p className="step_one_image_caption small-text">{background.caption}</p>
           </div>
         ))}
       </div>

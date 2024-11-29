@@ -4,7 +4,7 @@
 }
 
 .header-container img {
-  width: 75%;
+  width: 120%;
 }
 
 .header-home-icon {
@@ -12,8 +12,8 @@
 }
 
 .header-home-icon svg {
-  width: 5rem;
-  height: 5rem;
+  width: 8rem;
+  height: 8rem;
   color: var(--rescue-blue);
   cursor: pointer;
 }

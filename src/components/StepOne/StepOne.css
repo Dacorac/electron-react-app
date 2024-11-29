@@ -1,5 +1,8 @@
 .step_one_container {
+  display: grid;
+  height: 100%;
   color: var(--rescue-blue);
+  margin: 32px;
   margin: 32px;
 }
 
@@ -13,8 +16,7 @@
 .step_one_background {
   display: flex;
   flex-direction: column;
-  max-width: 25%;
-  margin: 1rem;
+  max-width: 32%;
 }
 
 .step_one_image {
@@ -27,7 +29,6 @@
 }
 
 .step_one_image_caption {
-  font-size: 24px;
   font-weight: 600;
 }
 

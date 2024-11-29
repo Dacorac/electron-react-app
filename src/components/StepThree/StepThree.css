@@ -1,8 +1,8 @@
 .step-three-container {
-  display: flex;
   width: 75%;
   margin: auto;
   color: var(--rescue-blue);
+  height: 100%;
 }
 
 .step-three-form {
@@ -16,20 +16,18 @@
 
 .checkbox {
   justify-content: flex-start;
-  margin: 10px 0;
+  margin: 1rem 0;
 }
 
 .step-three-form-label {
   display: flex;
   align-items: center;
   color: var(--rescue-blue);
-  font-size: 32px;
   font-weight: 600;
   width: 50%;
 }
 
 .step-three-note {
-  font-size: 18px;
   font-style: italic;
   padding-left: 5rem;
 }

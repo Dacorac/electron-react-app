@@ -15,7 +15,7 @@ const CustomCheckbox = ({id, label, checked, handleChange, ...props}) => {
         value={props.value}
         {...props}
       />
-      <label htmlFor={id}>{label}</label>
+      <label className="x-small-text" htmlFor={id}>{label}</label>
     </div>
   );
 }
