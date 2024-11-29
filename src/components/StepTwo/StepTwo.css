@@ -1,13 +1,13 @@
-.container {
-  display: flex;
+.step-two-container {
+  padding: 32px;
   width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
 }
 
 .video-container {
   position: relative;
+  width: var(--webcam-weight);
+  height: var(--webcam-height);
 }
 
 .blurry {
@@ -24,7 +24,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: var(--cloud-white);
   font-size: 3rem;
   font-weight: bold;
 }

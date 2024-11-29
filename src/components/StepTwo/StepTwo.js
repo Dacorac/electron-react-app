@@ -24,19 +24,24 @@ const StepTwo = () => {
   }, [originalPhoto]);
 
   const videoConstraints = {
-    height: { min: 480 },
-    width: { min: 720 },
-    /* aspectRatio: 1.5 */
+    height: 640,
+    width: 960
   };
 
   return (
-    <div className="container">
+    <div className="step-two-container">
       {imgSrc ? (
         <img src={imgSrc} alt="Captured" />
       ) : (
         <div className="video-container">
           <Webcam
-            style={{transform: 'rotate(90deg)'}}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%) rotate(90deg)",
+              transformOrigin: "center",
+            }}
             videoConstraints={videoConstraints}
             ref={webcamRef}
             screenshotFormat="image/jpeg"

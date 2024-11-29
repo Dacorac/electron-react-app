@@ -9,6 +9,9 @@
   --error_color: #F6A29A;
   --error_color_outline: #FDF0FB;
   --primary-lite: #c0bec5;
+
+  --webcam-weight: 640px;
+  --webcam-height: 960px;
 }
 
 body {
