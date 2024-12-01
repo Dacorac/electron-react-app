@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import useAlert from "./useAlert";
 
 const useTransformPhoto = () => {
   const [loading, setLoading] = useState(false);
   const [transformedPhoto, setTransformedPhoto] = useState(null);
+  const { setAlert } = useAlert();
 
   const transformPhoto = async (image, backgroundId) => {
-    console.log(backgroundId)
     setLoading(true);
 
     const body = JSON.stringify({
@@ -23,6 +24,7 @@ const useTransformPhoto = () => {
       setTransformedPhoto(response.data);
     } catch (error) {
       console.error("Error transforming photo:", error);
+      setAlert('error', error.message);
     } finally {
       setLoading(false);
     }

@@ -1,13 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useContext } from 'react';
 import { Context } from '../store/Store';
+import useAlert from './useAlert';
 
 const useSendVisitorDetails = () => {
+  const [loading, setLoading] = useState(false);
   const [state] = useContext(Context);
   const { visitorDetails } = state;
+  const { setAlert } = useAlert();
 
   const sendVisitorDetails = async (data) => {
+    setLoading(true);
+
     const body = {
       first_name: data.first_name,
       last_name: data.last_name,
@@ -21,6 +26,9 @@ const useSendVisitorDetails = () => {
       console.log(response.data);
     } catch (error) {
       console.error(error);
+      setAlert('error', error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,7 +38,7 @@ const useSendVisitorDetails = () => {
     }
   }, [visitorDetails]);
 
-  return { sendVisitorDetails };
+  return { sendVisitorDetails, loading };
 };
 
 export default useSendVisitorDetails;

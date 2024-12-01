@@ -7,21 +7,24 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import ThankyouPage from "./components/ThankyouPage/ThankyouPage";
 
 import Store from "./store/Store";
+import { AlertProvider } from "./context/AlertContext";
 
 function App() {
   return (
     <div className="app_container">
       <Store>
-        <HashRouter>
-          <Routes>
-            <Route path="/landing" element={<LandingPage />} />
-            <Route path="/step-one" element={<StepOne />} />
-            <Route path="/step-two" element={<StepTwo />} />
-            <Route path="/step-three" element={<StepThree />} />
-            <Route path="/thank-you" element={<ThankyouPage />} />
-            <Route path="/" element={<Navigate replace to="/landing" />} />
-          </Routes>
-        </HashRouter>
+        <AlertProvider>
+          <HashRouter>
+            <Routes>
+              <Route path="/landing" element={<LandingPage />} />
+              <Route path="/step-one" element={<StepOne />} />
+              <Route path="/step-two" element={<StepTwo />} />
+              <Route path="/step-three" element={<StepThree />} />
+              <Route path="/thank-you" element={<ThankyouPage />} />
+              <Route path="/" element={<Navigate replace to="/landing" />} />
+            </Routes>
+          </HashRouter>
+        </AlertProvider>
       </Store>
     </div>
   );
