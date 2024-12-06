@@ -9,7 +9,8 @@ const useResetStore = () => {
     dispatch(ResetStorage({
       selectedBackground : null,
       originalPhoto : null,
-      visitorDetails : null
+      visitorDetails : null,
+      localFilePath: null
     }));
   };
 

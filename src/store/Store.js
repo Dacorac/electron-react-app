@@ -2,9 +2,10 @@ import React, { useReducer, createContext, useEffect } from 'react';
 import StateReducer from '../reducers/reducers';
 
 const initialState = {
-  selectedBackground : null,
+  selectedBackground : 1,
   originalPhoto : null,
-  visitorDetails : null
+  visitorDetails : null,
+  localFilePath: null
 };
 
 const Store = ({ children }) => {

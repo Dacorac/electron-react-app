@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import useAlert from "./useAlert";
+import { Context } from "../store/Store";
+import { StoreLocalFilePath } from "../actions/Actions";
 
 const useTransformPhoto = () => {
+  const [, dispatch] = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [transformedPhoto, setTransformedPhoto] = useState(null);
   const { setAlert } = useAlert();
@@ -20,8 +23,9 @@ const useTransformPhoto = () => {
     };
 
     try {
-      const response = await axios.post(`http://localhost:8000/transform_image`, body, options);
-      setTransformedPhoto(response.data);
+      const { data } = await axios.post(`http://localhost:8000/transform_image`, body, options);
+      setTransformedPhoto(data.file);
+      dispatch(StoreLocalFilePath(data.file_path));
     } catch (error) {
       console.error("Error transforming photo:", error);
       setAlert('error', error.message);

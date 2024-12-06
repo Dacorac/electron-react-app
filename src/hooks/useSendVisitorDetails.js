@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useContext } from 'react';
-import { Context } from '../store/Store';
 import useAlert from './useAlert';
 
 const useSendVisitorDetails = () => {
   const [loading, setLoading] = useState(false);
-  const [state] = useContext(Context);
-  const { visitorDetails } = state;
   const { setAlert } = useAlert();
+  const navigate = useNavigate();
 
   const sendVisitorDetails = async (data) => {
     setLoading(true);
@@ -23,7 +21,9 @@ const useSendVisitorDetails = () => {
 
     try {
       const response = await axios.post(`http://localhost:8000/create_visitor_contact`, body);
-      console.log(response.data);
+      if (response.data) {
+        navigate('/thank-you');
+      }
     } catch (error) {
       console.error(error);
       setAlert('error', error.message);
@@ -31,12 +31,6 @@ const useSendVisitorDetails = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (visitorDetails) {
-      sendVisitorDetails(visitorDetails);
-    }
-  }, [visitorDetails]);
 
   return { sendVisitorDetails, loading };
 };

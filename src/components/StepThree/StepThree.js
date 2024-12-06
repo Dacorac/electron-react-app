@@ -147,7 +147,7 @@ const StepThree = () => {
         </div>
         <div className='btn-container'>
           <BackButton type='button' handleClick={() => navigate('/step-two')} />
-          <NextButton type='submit' handleClick={() => navigate('/thank-you')} isDisabled={isDisabled()} />
+          <NextButton type='submit' isDisabled={isDisabled()} />
         </div>
       </form>
     </div>
