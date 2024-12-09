@@ -1,18 +1,23 @@
 import React, { createContext, useState } from 'react';
 
 const initialState = {
-  messages: []
+  messages: [],
+  error: {}
 };
 
 const AlertContext = createContext({
   ...initialState,
   setAlert: () => {},
-  closeAlert: () => {}
+  closeAlert: () => {},
+  setErrorDialog: () => {},
+  closeDialog: () => {}
 });
 
 export const AlertProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
-
+  const [error, setError] = useState({});
+  const [showDialog, setShowDialog] = useState(false);
+  
   const setAlert = (text, type) => {
     setMessages(
       [
@@ -22,16 +27,30 @@ export const AlertProvider = ({ children }) => {
     );
   }
 
+  const setErrorDialog = (errorObject) => {
+    setError(errorObject);
+    setShowDialog(true);
+  }
+
   const closeAlert = (index) => {
     setMessages(messages.filter((_, i) => i !== index));
+  }
+
+  const closeDialog = () => {
+    setError({});
+    setShowDialog(false);
   }
 
   return (
     <AlertContext.Provider
       value={{
         messages,
+        error,
+        showDialog,
         setAlert,
-        closeAlert
+        closeAlert,
+        setErrorDialog,
+        closeDialog
       }}
     >
       {children}

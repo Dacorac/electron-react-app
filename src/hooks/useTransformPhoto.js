@@ -8,7 +8,7 @@ const useTransformPhoto = () => {
   const [, dispatch] = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [transformedPhoto, setTransformedPhoto] = useState(null);
-  const { setAlert } = useAlert();
+  const { setErrorDialog } = useAlert();
 
   const transformPhoto = async (image, backgroundId) => {
     setLoading(true);
@@ -28,7 +28,7 @@ const useTransformPhoto = () => {
       dispatch(StoreLocalFilePath(data.file_path));
     } catch (error) {
       console.error("Error transforming photo:", error);
-      setAlert('error', error.message);
+      setErrorDialog({ message: error.message, code: error.code });
     } finally {
       setLoading(false);
     }

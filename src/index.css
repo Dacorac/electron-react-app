@@ -80,3 +80,23 @@ button {
 .x-small-text {
   font-size: 24px;
 }
+
+.primary-button {
+  background-color: var(--outback-orange) !important;
+  color: var(--cloud-white);
+  border: 1px solid var(--outback-orange-outline) !important;
+}
+
+.primary-button:hover {
+  background-color: var(--outback-orange-outline) !important;
+  color: var(--cloud-white);
+}
+
+.secondary-button {
+  background-color: var(--silver-lining) !important;
+  border: 1px solid var(--primary-lite) !important;
+}
+
+.secondary-button:hover {
+  background-color: var(--primary-lite) !important;
+}

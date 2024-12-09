@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import useAlert from './useAlert';
 
 const useSendVisitorDetails = () => {
   const [loading, setLoading] = useState(false);
-  const { setAlert } = useAlert();
-  const navigate = useNavigate();
+  const { setErrorDialog } = useAlert();
 
   const sendVisitorDetails = async (data) => {
     setLoading(true);
@@ -21,12 +19,10 @@ const useSendVisitorDetails = () => {
 
     try {
       const response = await axios.post(`http://localhost:8000/create_visitor_contact`, body);
-      if (response.data) {
-        navigate('/thank-you');
-      }
+      console.log(response.data);
     } catch (error) {
       console.error(error);
-      setAlert('error', error.message);
+      setErrorDialog({ message: error.message, code: error.code });
     } finally {
       setLoading(false);
     }

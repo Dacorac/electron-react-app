@@ -1,19 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 import useAlert from "./useAlert";
+import { useNavigate } from "react-router-dom";
 
 const useUploadImage = () => {
   const [loading, setLoading] = useState(false);
-  const { setAlert } = useAlert();
+  const { setErrorDialog } = useAlert();
+  const navigate = useNavigate();
 
   const uploadImage = async (body) => {
     setLoading(true);
     try {
       const response = await axios.post(`http://localhost:8000/create_content_version_record`, body);
-      console.log(response.data);
+      if (response.data) {
+        navigate('/thank-you');
+      }
     } catch (error) {
       console.error(error);
-      setAlert('error', error.message);
+      setErrorDialog({ message: error.message, code: error.code });
     } finally {
       setLoading(false);
     }

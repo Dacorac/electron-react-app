@@ -8,6 +8,7 @@ import ThankyouPage from "./components/ThankyouPage/ThankyouPage";
 
 import Store from "./store/Store";
 import { AlertProvider } from "./context/AlertContext";
+import AlertDialog from "./components/customized/AlertDialog/AlertDialog";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Store>
         <AlertProvider>
           <HashRouter>
+            <AlertDialog />
             <Routes>
               <Route path="/landing" element={<LandingPage />} />
               <Route path="/step-one" element={<StepOne />} />
