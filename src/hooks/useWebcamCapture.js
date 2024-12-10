@@ -19,13 +19,38 @@ const useWebcamCapture = () => {
   const restartCapture = () => {
     setImgSrc(null);
     setIsCounting(false);
+    dispatch(StoreOriginalPhoto(null));
     reset();
   };
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-    dispatch(StoreOriginalPhoto(imageSrc));
+    if (!imageSrc) return;
+
+    // Rotate the image
+    const img = new Image();
+    img.src = imageSrc;
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+
+      // Set canvas size to match rotated dimensions
+      canvas.width = img.height;
+      canvas.height = img.width;
+
+      // Rotate the image
+      context.translate(canvas.width / 2, canvas.height / 2);
+      context.rotate(90 * (Math.PI / 180)); // Rotate 90 degrees
+      context.drawImage(img, -img.width / 2, -img.height / 2);
+
+      // Convert canvas back to base64
+      const rotatedImageSrc = canvas.toDataURL('image/png');
+
+      // Set the rotated image
+      setImgSrc(rotatedImageSrc);
+      dispatch(StoreOriginalPhoto(rotatedImageSrc));
+    };
   }, [webcamRef]);
 
   return {

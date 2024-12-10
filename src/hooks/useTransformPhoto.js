@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, use } from "react";
 import axios from "axios";
 import useAlert from "./useAlert";
 import { Context } from "../store/Store";
@@ -6,7 +6,8 @@ import { StoreLocalFilePath } from "../actions/Actions";
 import useOnlineStatus from "./useOnlineStatus";
 
 const useTransformPhoto = () => {
-  const [, dispatch] = useContext(Context);
+  const [state, dispatch] = useContext(Context);
+  const { originalPhoto } = state;
   const [loading, setLoading] = useState(false);
   const [transformedPhoto, setTransformedPhoto] = useState(null);
   const { setErrorDialog, setAlert } = useAlert();
@@ -19,6 +20,13 @@ const useTransformPhoto = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (originalPhoto == null) {
+      setTransformedPhoto(null);
+      dispatch(StoreLocalFilePath(null));
+    }
+  }, [originalPhoto]);
 
   const transformPhoto = async (image, backgroundId) => {
     setLoading(true);
