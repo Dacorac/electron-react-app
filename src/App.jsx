@@ -5,11 +5,11 @@ import StepTwo from "./components/StepTwo/StepTwo";
 import StepThree from "./components/StepThree/StepThree";
 import LandingPage from "./components/LandingPage/LandingPage";
 import ThankyouPage from "./components/ThankyouPage/ThankyouPage";
-
-import Store from "./store/Store";
-import { AlertProvider } from "./context/AlertContext";
 import AlertDialog from "./components/customized/AlertDialog/AlertDialog";
 import AlertPopup from "./components/customized/AlertPopup/AlertPopup";
+import Loader from "./components/customized/Loader/Loader";
+import { AlertProvider } from "./context/AlertContext";
+import Store from "./store/Store";
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <HashRouter>
             <AlertDialog />
             <AlertPopup />
+            <Loader />
             <Routes>
               <Route path="/landing" element={<LandingPage />} />
               <Route path="/step-one" element={<StepOne />} />
