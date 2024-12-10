@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+const ping = require('ping');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -70,5 +71,11 @@ ipcMain.handle('save-image', async (event, imageData) => {
         resolve(filePath);
       }
     });
+  });
+});
+
+ipcMain.on('check-online-status', (event) => {
+  ping.sys.probe('8.8.8.8', function(isAlive) {
+    event.reply('online-status', isAlive);
   });
 });

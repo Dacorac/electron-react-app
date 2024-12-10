@@ -1,17 +1,33 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import useAlert from "./useAlert";
 import { Context } from "../store/Store";
 import { StoreLocalFilePath } from "../actions/Actions";
+import useOnlineStatus from "./useOnlineStatus";
 
 const useTransformPhoto = () => {
   const [, dispatch] = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [transformedPhoto, setTransformedPhoto] = useState(null);
-  const { setErrorDialog } = useAlert();
+  const { setErrorDialog, setAlert } = useAlert();
+  const isOnline = useOnlineStatus();
+
+  useEffect(() => {
+    if (isOnline !== undefined) {
+      if (isOnline === false) {
+        setAlert('No Internet. Please, check your internet connection and try again.', 'danger');
+      }
+    }
+  }, []);
 
   const transformPhoto = async (image, backgroundId) => {
     setLoading(true);
+
+    if (isOnline === false) {
+      setAlert('No Internet. Please, check your internet connection and try again.', 'danger');
+      setLoading(false);
+      return;
+    }
 
     const body = JSON.stringify({
       image: image,

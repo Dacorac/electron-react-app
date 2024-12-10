@@ -66,7 +66,7 @@ const StepTwo = () => {
         {imgSrc && (
           <>
             <BackButton type='button' handleClick={restartCapture} />
-            <NextButton type='button' handleClick={() => navigate('/step-three')} />
+            <NextButton isDisabled={!transformedPhoto} type='button' handleClick={() => navigate('/step-three')} />
           </>
         )}
       </div>

@@ -1,15 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import useAlert from "./useAlert";
+import useOnlineStatus from "./useOnlineStatus";
 import { useNavigate } from "react-router-dom";
 
 const useUploadImage = () => {
   const [loading, setLoading] = useState(false);
-  const { setErrorDialog } = useAlert();
+  const { setErrorDialog, setAlert } = useAlert();
+  const isOnline = useOnlineStatus();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isOnline !== undefined) {
+      if (isOnline === false) {
+        setAlert('No Internet. Please, check your internet connection and try again.', 'danger');
+      }
+    }
+  }, []);
 
   const uploadImage = async (body) => {
     setLoading(true);
+
+    if (isOnline === false) {
+      setAlert('No Internet. Please, check your internet connection and try again.', 'danger');
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.post(`http://localhost:8000/create_content_version_record`, body);
       if (response.data) {

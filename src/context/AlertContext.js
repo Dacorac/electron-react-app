@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 
+const ALERT_TIME = 5000;
 const initialState = {
   messages: [],
   error: {}
@@ -25,6 +26,10 @@ export const AlertProvider = ({ children }) => {
         { text: text, type: type }
       ]
     );
+
+    setTimeout(() => {
+      setMessages([])
+    }, ALERT_TIME);
   }
 
   const setErrorDialog = (errorObject) => {
