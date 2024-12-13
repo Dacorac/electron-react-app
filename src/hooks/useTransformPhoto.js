@@ -1,16 +1,18 @@
-import { useContext, useState, useEffect, use } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import useAlert from "./useAlert";
 import { Context } from "../store/Store";
 import { StoreLocalFilePath } from "../actions/Actions";
 import useOnlineStatus from "./useOnlineStatus";
+import { useLoading } from "../context/LoadingContext";
 
 const useTransformPhoto = () => {
   const [state, dispatch] = useContext(Context);
-  const { originalPhoto } = state;
-  const [loading, setLoading] = useState(false);
   const [transformedPhoto, setTransformedPhoto] = useState(null);
+  const { originalPhoto } = state;
+  const { setLoader } = useLoading();
   const { setErrorDialog, setAlert } = useAlert();
+  
   const isOnline = useOnlineStatus();
 
   useEffect(() => {
@@ -29,11 +31,11 @@ const useTransformPhoto = () => {
   }, [originalPhoto]);
 
   const transformPhoto = async (image, backgroundId) => {
-    setLoading(true);
+    setLoader(true);
 
     if (isOnline === false) {
       setAlert('No Internet. Please, check your internet connection and try again.', 'danger');
-      setLoading(false);
+      setLoader(false);
       return;
     }
 
@@ -54,11 +56,11 @@ const useTransformPhoto = () => {
       console.error("Error transforming photo:", error);
       setErrorDialog({ message: error.message, code: error.code });
     } finally {
-      setLoading(false);
+      setLoader(false);
     }
   };
 
-  return { transformedPhoto, transformPhoto, loading };
+  return { transformedPhoto, transformPhoto };
 };
 
 export default useTransformPhoto;

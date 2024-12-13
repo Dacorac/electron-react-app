@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useLoading } from '../context/LoadingContext';
 import axios from 'axios';
 import useAlert from './useAlert';
 import useOnlineStatus from './useOnlineStatus';
 
 const useSendVisitorDetails = () => {
-  const [loading, setLoading] = useState(false);
   const { setErrorDialog, setAlert } = useAlert();
+  const { setLoader } = useLoading();
+  
   const isOnline = useOnlineStatus();
 
   useEffect(() => {
@@ -17,11 +19,11 @@ const useSendVisitorDetails = () => {
   }, []);
 
   const sendVisitorDetails = async (data) => {
-    setLoading(true);
+    setLoader(true);
 
     if (isOnline === false) {
       setAlert('No Internet. Please, check your internet connection and try again.', 'danger');
-      setLoading(false);
+      setLoader(false);
       return;
     }
 
@@ -40,11 +42,11 @@ const useSendVisitorDetails = () => {
       console.error(error);
       setErrorDialog({ message: error.message, code: error.code });
     } finally {
-      setLoading(false);
+      setLoader(false);
     }
   };
 
-  return { sendVisitorDetails, loading };
+  return { sendVisitorDetails };
 };
 
 export default useSendVisitorDetails;

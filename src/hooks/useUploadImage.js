@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import axios from "axios";
 import useAlert from "./useAlert";
 import useOnlineStatus from "./useOnlineStatus";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../context/LoadingContext";
 
 const useUploadImage = () => {
-  const [loading, setLoading] = useState(false);
   const { setErrorDialog, setAlert } = useAlert();
+  const { setLoader } = useLoading();
+
   const isOnline = useOnlineStatus();
   const navigate = useNavigate();
 
@@ -19,11 +21,11 @@ const useUploadImage = () => {
   }, []);
 
   const uploadImage = async (body) => {
-    setLoading(true);
+    setLoader(true);
 
     if (isOnline === false) {
       setAlert('No Internet. Please, check your internet connection and try again.', 'danger');
-      setLoading(false);
+      setLoader(false);
       return;
     }
 
@@ -36,11 +38,11 @@ const useUploadImage = () => {
       console.error(error);
       setErrorDialog({ message: error.message, code: error.code });
     } finally {
-      setLoading(false);
+      setLoader(false);
     }
   }
 
-  return { uploadImage, loading };
+  return { uploadImage };
 }
  
 export default useUploadImage;

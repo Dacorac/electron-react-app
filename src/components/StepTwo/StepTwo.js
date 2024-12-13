@@ -59,8 +59,6 @@ const StepTwo = () => {
         )
       )}
 
-      {transformLoading && <Loader />}
-
       <div className="btn-container">
         {!imgSrc && !isCounting && <button onClick={startCountdown}>Capture photo</button>}
         {imgSrc && (

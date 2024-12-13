@@ -1,21 +1,15 @@
 import React from 'react';
+import { useLoading } from '../../../context/LoadingContext';
 import './Loader.css';
-import useTransformPhoto from '../../../hooks/useTransformPhoto';
-import useSendVisitorDetails from '../../../hooks/useSendVisitorDetails';
-import useUploadImage from '../../../hooks/useUploadImage';
 
 const Loader = () => {
-  const { loading: loadingVisitorDetails } = useSendVisitorDetails();
-  const { loading: loadingPhotoTransformation } = useTransformPhoto();
-  const { loading: loadingimageUpload } = useUploadImage();
+  const { isLoading } = useLoading();
+  
+  return isLoading ? (
+    <div className="loader-wrapper">
+      <span className="loader"></span>
+    </div>
+  ) : null;
+};
 
-  const isLoading = loadingVisitorDetails || loadingPhotoTransformation || loadingimageUpload;
-
-  return (  
-    <>
-     {isLoading ? <span className="loader"></span> : null}
-    </>
-  );
-}
- 
 export default Loader;
