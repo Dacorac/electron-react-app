@@ -1,7 +1,4 @@
 import React, { createContext, useContext, useState } from "react";
-import useSendVisitorDetails from "../hooks/useSendVisitorDetails";
-import useTransformPhoto from "../hooks/useTransformPhoto";
-import useUploadImage from "../hooks/useUploadImage";
 
 const initialState = {
   isLoading: false
