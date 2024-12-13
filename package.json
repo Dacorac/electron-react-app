@@ -1,6 +1,6 @@
 {
-  "name": "electron-react-app",
-  "productName": "electron-react-app",
+  "name": "life-flight-photo-ui",
+  "productName": "LifeFlight Green Screen",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",

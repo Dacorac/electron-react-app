@@ -7,7 +7,6 @@ import useWebcamCapture from "../../hooks/useWebcamCapture";
 import useTransformPhoto from "../../hooks/useTransformPhoto";
 import NextButton from "../customized/NextButton/NextButton";
 import BackButton from "../customized/BackButton/BackButton";
-import Loader from "../customized/Loader/Loader";
 import "./StepTwo.css";
 
 const StepTwo = () => {
