@@ -6,11 +6,14 @@ import NextButton from "../customized/NextButton/NextButton";
 import BackButton from "../customized/BackButton/BackButton";
 import useVisitorForm from '../../hooks/useVisitorForm';
 import { useNavigate } from "react-router-dom";
+import { Context } from '../../store/Store';
+import { StoreOriginalPhoto } from '../../actions/Actions';
 
 import "./StepThree.css";
 
 const StepThree = () => {
-  const { register, handleSubmit, setValue, watch, errors, isValid, resetForm } = useVisitorForm();
+  const { register, handleSubmit, setValue, watch, errors, isValid } = useVisitorForm();
+  const [, dispatch] = useContext(Context);
   const [marketingChecked, setMarketingChecked] = useState(true);
   const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false);
   const navigate = useNavigate();
@@ -34,17 +37,16 @@ const StepThree = () => {
 
   const marketingCheckboxValue = watch("marketingUpdate");
 
-  const reset = () => {
-    resetForm();
-    setMarketingChecked(true);
-    setPrivacyPolicyChecked(false);
-  }
-
   const isDisabled = () => {
     let hasErrors = Object.keys(errors).length !== 0;
     let isChecked = privacyPolicyChecked ? true : false;
 
     return hasErrors || !isChecked || !isValid;
+  }
+
+  const goBack = () => {
+    navigate('/step-two');
+    dispatch(StoreOriginalPhoto(null));
   }
 
   return (
@@ -146,7 +148,7 @@ const StepThree = () => {
           </div>
         </div>
         <div className='btn-container'>
-          <BackButton type='button' handleClick={() => navigate('/step-two')} />
+          <BackButton type='button' handleClick={goBack} />
           <NextButton type='submit' isDisabled={isDisabled()} />
         </div>
       </form>
