@@ -9,7 +9,7 @@ const useWebcamCapture = () => {
   const [isCounting, setIsCounting] = useState(false);
   const [, dispatch] = useContext(Context);
 
-  const { time, start, reset } = useCountdown(5, () => capture());
+  const { time, start, reset } = useCountdown(30, () => capture());
 
   const startCountdown = () => {
     setIsCounting(true);
