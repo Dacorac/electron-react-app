@@ -14,7 +14,7 @@ const createWindow = (width, height) => {
   const mainWindow = new BrowserWindow({
     width: Math.min(width, height),
     height: Math.max(width, height),
-    // fullscreen: true,
+    fullscreen: true,
     icon: '/assets/icons/LifeFlight_New_Windows',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
@@ -33,7 +33,7 @@ const createWindow = (width, height) => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

@@ -48,7 +48,6 @@ const useSendVisitorDetails = () => {
 
     try {
       const response = await axios.post(`http://localhost:8000/create_contact_with_image`, { contact_data, file_data });
-      console.log(response.data);
 
       if (response.data) {
         navigate('/thank-you');
