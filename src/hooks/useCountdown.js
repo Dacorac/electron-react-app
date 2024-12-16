@@ -7,11 +7,11 @@ const useCountdown = (initialTime, onComplete) => {
   useEffect(() => {
     let interval = null;
 
-    if (isActive && time > 0) {
+    if (isActive && time > 1) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
       }, 1000);
-    } else if (time === 0) {
+    } else if (time === 1) {
       clearInterval(interval);
       if (onComplete) onComplete();
     }

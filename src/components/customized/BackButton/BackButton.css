@@ -1,3 +1,14 @@
+.back-button {
+  display: flex;
+  align-items: center;
+}
+
 .back-button-image {
-  width: 50px;
+  width: 70px;
+  margin-right: 1em;
+}
+
+.back-button-text {
+  font-weight: 600;
+  color: var(--outback-orange);
 }

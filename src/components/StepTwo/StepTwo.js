@@ -1,20 +1,25 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/Store";
+import { IoCameraSharp } from "react-icons/io5";
 import Webcam from "react-webcam";
 import withHeaderFooter from "../../hoc/withHeaderFooter";
 import useWebcamCapture from "../../hooks/useWebcamCapture";
 import useTransformPhoto from "../../hooks/useTransformPhoto";
 import NextButton from "../customized/NextButton/NextButton";
 import BackButton from "../customized/BackButton/BackButton";
+
 import "./StepTwo.css";
 
 const StepTwo = () => {
-  const { webcamRef, imgSrc, isCounting, time, startCountdown, restartCapture } = useWebcamCapture();
-  const { transformedPhoto, transformPhoto, loading: transformLoading } = useTransformPhoto();
   const [state] = useContext(Context);
+  const { webcamRef, imgSrc, isCounting, time, startCountdown, restartCapture } = useWebcamCapture();
+  const { transformedPhoto, transformPhoto } = useTransformPhoto();
   const { selectedBackground, originalPhoto } = state;
+
   const navigate = useNavigate();
+
+  const instructions_pic = '../assets/instructions.png';
 
   useEffect(() => {
     if (originalPhoto && selectedBackground) {
@@ -23,8 +28,8 @@ const StepTwo = () => {
   }, [originalPhoto]);
 
   const videoConstraints = {
-    height: 640,
-    width: 960
+    height: 720,
+    width: 720
   };
 
   return (
@@ -33,8 +38,8 @@ const StepTwo = () => {
         <img src={`data:image/png;base64,${transformedPhoto}`} alt="Captured" />
       ) : (
         imgSrc ? (
-            <img src={imgSrc} alt="Captured" />
-          ) : (
+          <img src={imgSrc} alt="Captured" />
+        ) : (
           <div className="video-container">
             <Webcam
               style={{
@@ -49,23 +54,30 @@ const StepTwo = () => {
               screenshotFormat="image/jpeg"
               className={isCounting ? "blurry" : ""}
             />
-            {isCounting && (
+            {!imgSrc && (
               <div className="overlay">
-                <h1>{time}</h1>
+                {isCounting ? 
+                  <h1 className="x-large-text">{time}</h1> 
+                  : 
+                  <button className="step-two-camera-button unbuttonize" onClick={startCountdown}>
+                    <IoCameraSharp className="step-two-camera-button-icon" />
+                    <h1 className="medium-text">Tap to shoot</h1>
+                  </button>}
               </div>
             )}
           </div>
         )
       )}
-
       <div className="btn-container">
-        {!imgSrc && !isCounting && <button onClick={startCountdown}>Capture photo</button>}
         {imgSrc && (
           <>
-            <BackButton type='button' handleClick={restartCapture} />
-            <NextButton isDisabled={!transformedPhoto} type='button' handleClick={() => navigate('/step-three')} />
+            <BackButton type="button" text="RETAKE" handleClick={restartCapture} />
+            <NextButton isDisabled={!transformedPhoto} type="button" handleClick={() => navigate('/step-three')} />
           </>
         )}
+        {!imgSrc && !transformedPhoto && <div className="step-two-instructions-container">
+          <img className="step-two-instructions-img" src={instructions_pic} />
+        </div>}
       </div>
     </div>
   );
