@@ -4,7 +4,7 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: 'src/assets/icons/LifeFlight_New'
+    icon: 'src/assets/icons/LifeFlight_New_Windows'
   },
   rebuildConfig: {},
   makers: [

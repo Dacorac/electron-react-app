@@ -15,6 +15,7 @@ const createWindow = (width, height) => {
     width: Math.min(width, height),
     height: Math.max(width, height),
     // fullscreen: true,
+    icon: '/assets/icons/LifeFlight_New_Windows',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
