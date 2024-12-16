@@ -36,14 +36,18 @@
 .landing-privacy-policy {
   display: flex;
   align-items: flex-end;
-  color: var(--cloud-white);
-  font-size: 32px;
   z-index: 1;
   max-width: 50%;
   font-weight: bold;
   margin-left: 42px;
   margin-bottom: 42px;
   cursor: pointer;
+}
+
+.landing-privacy-policy a {
+  font-size: 32px;
+  color: var(--cloud-white);
+  text-decoration: none;
 }
 
 .landing-logo-container {
