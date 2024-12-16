@@ -51,7 +51,7 @@ const StepThree = () => {
 
   return (
     <div className='step-three-container'>
-      <p className='step-three-title large-title'>Get your photo emailed to you</p>
+      <p className='step-three-title large-title'>Get your photo emailed <br/>to you</p>
       <form onSubmit={handleSubmit}>
         <div className='step-three-form'>
           <div className='step-three-form-group'>

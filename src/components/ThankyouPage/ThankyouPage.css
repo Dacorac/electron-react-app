@@ -6,4 +6,6 @@
   align-items: center;
   margin: auto;
   color: var(--rescue-blue);
+  height: 90%;
+  justify-content: center;
 }

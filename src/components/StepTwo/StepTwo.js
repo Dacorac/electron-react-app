@@ -68,17 +68,16 @@ const StepTwo = () => {
           </div>
         )
       )}
-      <div className="btn-container">
-        {imgSrc && (
-          <>
-            <BackButton type="button" text="RETAKE" handleClick={restartCapture} />
-            <NextButton isDisabled={!transformedPhoto} type="button" handleClick={() => navigate('/step-three')} />
-          </>
-        )}
-        {!imgSrc && !transformedPhoto && <div className="step-two-instructions-container">
-          <img className="step-two-instructions-img" src={instructions_pic} />
-        </div>}
-      </div>
+      {imgSrc && (
+        <div className="btn-container">
+          <BackButton type="button" text="RETAKE" handleClick={restartCapture} />
+          <NextButton isDisabled={!transformedPhoto} type="button" handleClick={() => navigate('/step-three')} />
+        </div>
+      )}
+      
+      {!imgSrc && !transformedPhoto && <div className="step-two-instructions-container">
+        <img className="step-two-instructions-img" src={instructions_pic} />
+      </div>}
     </div>
   );
 };

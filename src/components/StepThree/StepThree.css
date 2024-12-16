@@ -1,8 +1,11 @@
 .step-three-container {
+  display: flex;
+  flex-direction: column;
   width: 75%;
   margin: auto;
   color: var(--rescue-blue);
   height: 100%;
+  justify-content: center;
 }
 
 .step-three-form {

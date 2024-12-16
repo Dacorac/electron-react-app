@@ -1,4 +1,4 @@
-input {
+.input_wrapp input {
   border: none;
   box-shadow: none;
   outline: none;
@@ -8,7 +8,7 @@ input {
   font-style: normal;
 }
 
-input::placeholder {
+.input_wrapp input::placeholder {
   font-weight: lighter;
   color: var(--primary-lite);
 }

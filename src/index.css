@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif !important;
   margin: auto;
   max-width: 38rem;
   flex-direction: column;
